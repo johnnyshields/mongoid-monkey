@@ -664,7 +664,7 @@ if Mongoid::VERSION =~ /\A3\./
           expect(smiths.reload.likes).to eq(10)
         end
       end
-    end if mongodb_version > "2.5"
+    end
 
     describe "#inc" do
 
