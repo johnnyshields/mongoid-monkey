@@ -27,11 +27,11 @@ If you would only like some of the patches, please copy and paste the code to yo
 
 | File | Description | 3 | 4 | 5 |
 | --- | --- | --- | --- | --- |
-| `atomic.rb` | Backport syntax change of atomic query methods. | O | - | - |
-| `big_decimal.rb` | Fixes buggy BigDecimal behavior. | O | O | O |
-| `instrument.rb` | Backport instrumentation change to Moped 1. | O | - | - |
-| `list_collections.rb` | Fetch collections via `listCollections` command; required for WiredTiger. | O | O | - |
-| `reorder.rb` | Backport `Criteria#reorder` method. | O | - | - |
+| `atomic.rb` | Backport syntax change of atomic query methods. | ● | | |
+| `big_decimal.rb` | Fixes buggy BigDecimal behavior. | ● | ● | ● |
+| `instrument.rb` | Backport instrumentation change to Moped 1. | ● | | |
+| `list_collections.rb` | Fetch collections via `listCollections` command; required for WiredTiger. | ● | ● | |
+| `reorder.rb` | Backport `Criteria#reorder` method. | ● | | |
 
 ### License
 
