@@ -135,7 +135,7 @@ if Mongoid::VERSION =~ /\A3\./
           smiths.reload.likes.should eq(10)
         end
       end
-    end if mongodb_version > "2.5"
+    end
 
     describe "#inc" do
 
