@@ -1,4 +1,8 @@
 
+#### 0.1.2
+
+* More index support, port index-related tests from Mongoid lib.
+
 #### 0.1.1
 
 * Add index support to WiredTiger patch.

@@ -20,8 +20,7 @@ module Moped
   class Indexes
 
     def [](key)
-      result = database.command(listIndexes: collection_name)
-      result["cursor"]["firstBatch"].detect do |index|
+      list_indexes_command.detect do |index|
         (index['name'] == key) || (index['key'] == normalize_keys(key))
       end
     end
@@ -32,7 +31,15 @@ module Moped
       database.command(createIndexes: collection_name, indexes: [spec])
     end
 
+    def each(&block)
+      list_indexes_command.each(&block)
+    end
+
     protected
+
+    def list_indexes_command
+      database.command(listIndexes: collection_name)["cursor"]["firstBatch"]
+    end
 
     def normalize_keys(spec)
       return false if spec.is_a?(String)
