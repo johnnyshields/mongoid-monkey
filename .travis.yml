@@ -4,7 +4,6 @@ rvm:
   - 2.0
   - 2.1
   - 2.2
-  - 2.3
   - rbx
   - jruby
   - ruby-head
@@ -23,10 +22,10 @@ matrix:
 env:
   matrix:
     - MONGODB=3.2.3 CONFIG="--config /tmp/mongodb-wiredtiger.conf"
-    - MONGODB=3.2.3 CONFIG=""
+    - MONGODB=3.2.3 CONFIG="--config /tmp/mongodb-mmapv1.conf"
 
 before_script:
-  - cp configs/mongodb-wiredtiger.conf /tmp/mongodb-wiredtiger.conf
+  - cp spec/config/* /tmp/
   - wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGODB}.tgz -O /tmp/mongodb.tgz
   - tar -xvf /tmp/mongodb.tgz
   - mkdir /tmp/data

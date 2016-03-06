@@ -5,7 +5,7 @@ module Moped
   class Database
 
     def collection_names
-      namespaces = Collection.new(self, "$cmd").find(listCollections: 1, name: { "$not" => /#{name}\.system\.|\$/ }).first
+      namespaces = Collection.new(self, "$cmd").find(listCollections: 1, filter: { name: { "$not" => /system\.|\$/ } }).first
       namespaces["cursor"]["firstBatch"].map do |doc|
         doc["name"]
       end
