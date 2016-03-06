@@ -2,6 +2,16 @@ require "spec_helper"
 
 if Mongoid::VERSION =~ /\A3\./
 
+  class Band
+    include Mongoid::Document
+    field :name, type: String
+    field :genres, type: Array
+    field :mems, as: :members, type: Array
+    field :likes, type: Integer
+    field :y, as: :years, type: Integer
+  end
+
+  # Mongoid 3
   describe Mongoid::Contextual::Atomic do
 
     describe "#add_to_set" do
@@ -526,7 +536,7 @@ if Mongoid::VERSION =~ /\A3\./
     end
   end
 
-# MONGOID 4
+  # Mongoid 4
   describe Mongoid::Contextual::Atomic do
 
     describe "#add_to_set" do
