@@ -1,4 +1,4 @@
-# Mongoid Monkey
+# Mongoid Monkey [![Build Status](https://travis-ci.org/johnnyshields/mongoid_monkey.svg?branch=master)](https://travis-ci.org/johnnyshields/mongoid_monkey)
 
 ### Monkey Patches for Mongoid
 
