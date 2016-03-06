@@ -2,6 +2,10 @@ require "spec_helper"
 
 if Mongoid::VERSION =~ /\A3\./
 
+  class Origin::Query
+    include Origin::Queryable
+  end
+
   describe Origin::Optional do
 
     let(:query) do
