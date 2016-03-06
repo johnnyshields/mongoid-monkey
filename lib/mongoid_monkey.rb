@@ -11,5 +11,5 @@ end
 
 if defined?(Moped)
   require 'patches/instrument' if Moped::VERSION =~ /\A1\./
-  require 'patches/list_collections'
+  require 'patches/db_commands'
 end

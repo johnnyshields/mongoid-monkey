@@ -29,8 +29,8 @@ If you would only like some of the patches, please copy and paste the code to yo
 | --- | --- | --- | --- | --- |
 | `atomic.rb` | Backport syntax change of atomic query methods. | ● | | |
 | `big_decimal.rb` | Fixes buggy BigDecimal behavior. | ● | ● | ● |
+| `db_commands.rb` | Use MongoDB 3.0+ command syntax; required for WiredTiger. | ● | ● | |
 | `instrument.rb` | Backport instrumentation change to Moped 1. | ● | | |
-| `list_collections.rb` | Fetch collections via `listCollections` command; required for WiredTiger. | ● | ● | |
 | `reorder.rb` | Backport `Criteria#reorder` method. | ● | | |
 
 ### License

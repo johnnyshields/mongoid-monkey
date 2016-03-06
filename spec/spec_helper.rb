@@ -1,12 +1,13 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$database_name = 'mongoid_monkey_test'
 
 require 'mongoid'
 require 'mongoid_monkey'
 require 'rspec'
 
 Mongoid.configure do |config|
-  config.connect_to 'mongoid_monkey_test'
+  config.connect_to $database_name
 end
 
 Mongoid.logger.level = Logger::INFO
