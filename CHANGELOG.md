@@ -1,4 +1,9 @@
 
+#### 0.1.3
+
+* Support index-related Rake tasks.
+* Refactor if statements to be inside individual patch files for clarity.
+
 #### 0.1.2
 
 * More index support, port index-related tests from Mongoid lib.

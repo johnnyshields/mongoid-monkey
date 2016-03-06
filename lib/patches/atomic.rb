@@ -1,3 +1,7 @@
+# Backport Mongoid 4 hash-based atomic method syntax to Mongoid 3.
+
+if Mongoid::VERSION =~ /\A3\./
+
 module Mongoid
 module Contextual
 module Atomic
@@ -104,6 +108,7 @@ module Atomic
       operations
     end
   end
+end
 end
 end
 end

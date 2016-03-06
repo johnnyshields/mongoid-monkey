@@ -1,15 +1,7 @@
 require 'version'
 
-if Mongoid::VERSION =~ /\A3\./
-  require 'patches/atomic'
-  require 'patches/reorder'
-end
-
-if Mongoid::VERSION =~ /\A[345]\./
-  require 'patches/big_decimal'
-end
-
-if defined?(Moped)
-  require 'patches/instrument' if Moped::VERSION =~ /\A1\./
-  require 'patches/db_commands'
-end
+require 'patches/atomic'
+require 'patches/big_decimal'
+require 'patches/db_commands'
+require 'patches/instrument'
+require 'patches/reorder'
