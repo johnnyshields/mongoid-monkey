@@ -1,4 +1,8 @@
 
+#### 0.1.4
+
+* Add atomic persistence support for Mongoid 3 (previously only contextual was supported).
+
 #### 0.1.3
 
 * Support index-related Rake tasks.
