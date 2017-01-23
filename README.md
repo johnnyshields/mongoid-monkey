@@ -36,7 +36,7 @@ If you would only like some of the patches, please copy and paste the code to yo
 | `db_commands.rb` | Use MongoDB 3.0+ command syntax; required for WiredTiger. | ● | ● | ○ |
 | `instrument.rb` | Backport instrumentation change to Moped 1. | ● | ○ | ○ |
 | `reorder.rb` | Backport `Criteria#reorder` method from Mongoid 4. | ● | ○ | ○ |
-| `only_pluck_localized.rb` | Backport [PR #4299](https://github.com/mongodb/mongoid/pull/4299) from Mongoid 6 which fixes `#only` and `#pluck` with localized fields. | ● | × | × |
+| `only_pluck_localized.rb` | Backport [PR #4299](https://github.com/mongodb/mongoid/pull/4299) from Mongoid 6 which fixes `#only`, `#without`, and `#pluck` with localized fields. | ● | × | × |
 
 ### License
 
