@@ -1,4 +1,8 @@
 
+#### 0.1.5
+
+* Backport [PR #4299](https://github.com/mongodb/mongoid/pull/4299) from Mongoid 6 to Mongoid 3 which fixes `#only`, `#without`, and `#pluck` with localized fields.
+
 #### 0.1.4
 
 * Add atomic persistence support for Mongoid 3 (previously only contextual was supported).
