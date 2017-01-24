@@ -1,4 +1,8 @@
 
+#### 0.2.1
+
+* Bug Fix: Remove accidental `puts` call.
+
 #### 0.2.0
 
 * Backport [PR #4299](https://github.com/mongodb/mongoid/pull/4299) from Mongoid 6 to Mongoid 3 which fixes `#only`, `#without`, and `#pluck` with localized fields.

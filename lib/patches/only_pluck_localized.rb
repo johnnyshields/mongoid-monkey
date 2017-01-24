@@ -37,7 +37,6 @@ if Mongoid::VERSION =~ /\A3\./
 
       def only(*args)
         args = args.flatten
-        puts args.inspect
         option(*args) do |options|
           options.store(
               :fields,
