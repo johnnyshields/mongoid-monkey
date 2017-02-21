@@ -1,4 +1,8 @@
 
+#### 0.2.3
+
+* Backport valid index options from Mongoid 6.
+
 #### 0.2.2
 
 * Backport [Issue #3310](https://github.com/mongodb/mongoid/commit/a94c2f43573e58f973913c881ad9d11d62bf857c) from Mongoid 4 to add `:touch` option to `embedded_in`.
