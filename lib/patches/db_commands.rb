@@ -21,6 +21,29 @@ if defined?(Moped)
   module Moped
     class Indexes
 
+      OPTIONS = {
+          :background => :background,
+          :bits => :bits,
+          :bucket_size => :bucketSize,
+          :default_language => :default_language,
+          :expire_after => :expireAfterSeconds,
+          :expire_after_seconds => :expireAfterSeconds,
+          :key => :key,
+          :language_override => :language_override,
+          :max => :max,
+          :min => :min,
+          :name => :name,
+          :partial_filter_expression => :partialFilterExpression,
+          :sparse => :sparse,
+          :sphere_version => :'2dsphereIndexVersion',
+          :storage_engine => :storageEngine,
+          :text_version => :textIndexVersion,
+          :unique => :unique,
+          :version => :v,
+          :weights => :weights,
+          :collation => :collation
+      }.freeze
+
       def [](key)
         list_indexes_command.detect do |index|
           (index['name'] == key) || (index['key'] == normalize_keys(key))
@@ -28,7 +51,11 @@ if defined?(Moped)
       end
 
       def create(key, options = {})
-        spec = options.merge(ns: namespace, key: key)
+        spec = options.reduce({}) do |transformed, (key, value)|
+          transformed[OPTIONS[key.to_sym]] = value if OPTIONS[key.to_sym]
+          transformed
+        end
+        spec = spec.merge(ns: namespace, key: key)
         spec[:name] ||= key.to_a.join("_")
         database.command(createIndexes: collection_name, indexes: [spec])
       end

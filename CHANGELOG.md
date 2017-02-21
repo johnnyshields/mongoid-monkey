@@ -1,4 +1,8 @@
 
+#### 0.2.4
+
+* Support aliases for index options.
+
 #### 0.2.3
 
 * Backport valid index options from Mongoid 6.
