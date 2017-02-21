@@ -1,12 +1,9 @@
-# Backport Mongoid 4 :touch option for #embedded_in to Mongoid 3.
+# Backport Mongoid 6 index options to Mongoid 3 and 4.
 
 if Mongoid::VERSION =~ /\A3\./
 
-module Mongoid
-module Indexes
-module Validators
-
-  module Options
+  ::Mongoid::Indexes::Validators::Options.send(:remove_const, :VALID_OPTIONS)
+  module Mongoid::Indexes::Validators::Options
     VALID_OPTIONS = [
         :background,
         :database,
@@ -30,17 +27,11 @@ module Validators
         :collation
     ]
   end
-end
-end
-end
 
 elsif Mongoid::VERSION =~ /\A4\./
 
-module Mongoid
-module Indexable
-module Validators
-
-  module Options
+  ::Mongoid::Indexable::Validators::Options.send(:remove_const, :VALID_OPTIONS)
+  module Mongoid::Indexable::Validators::Options
     VALID_OPTIONS = [
         :background,
         :database,
@@ -64,8 +55,4 @@ module Validators
         :collation
     ]
   end
-end
-end
-end
-
 end
