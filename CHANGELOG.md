@@ -1,4 +1,9 @@
 
+#### 0.2.5
+
+* Improvements to `:touch` callback support on `:embedded_in`.
+* Backport fix to an infinite loop issue related to `:touch` callbacks from Mongoid 6.
+
 #### 0.2.4
 
 * Support aliases for index options.
