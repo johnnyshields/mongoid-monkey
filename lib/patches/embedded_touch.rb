@@ -69,16 +69,22 @@ module Mongoid
       end
       children.to_a
     end
+
+    def cascadable_child?(kind, child, metadata)
+      return false if kind == :initialize || kind == :find || kind == :touch
+      return false if kind == :validate && metadata.validate?
+      child.callback_executable?(kind) ? child.in_callback_state?(kind) : false
+    end
   end
 end
 
 end
 
-if Mongoid::VERSION =~ /\A[345]\./
+if Mongoid::VERSION =~ /\A[45]\./
 
 module Mongoid
 
-  module Callbacks
+  module Interceptable
     def cascadable_child?(kind, child, metadata)
       return false if kind == :initialize || kind == :find || kind == :touch
       return false if kind == :validate && metadata.validate?
