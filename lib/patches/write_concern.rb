@@ -2,7 +2,7 @@
 
 if Mongoid::VERSION =~ /\A3\./
 
-  module TrueClass
+  class TrueClass
     def __safe_options__
       { w: 1 }
     end

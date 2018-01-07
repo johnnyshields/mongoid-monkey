@@ -22,8 +22,10 @@ matrix:
 
 env:
   matrix:
-    - MONGODB=3.2.3 CONFIG="--config /tmp/mongodb-wiredtiger.conf"
-    - MONGODB=3.2.3 CONFIG="--config /tmp/mongodb-mmapv1.conf"
+    - MONGODB=3.2.18 CONFIG="--config /tmp/mongodb-wiredtiger.conf"
+    - MONGODB=3.2.18 CONFIG="--config /tmp/mongodb-mmapv1.conf"
+    - MONGODB=3.4.10 CONFIG="--config /tmp/mongodb-wiredtiger.conf"
+    - MONGODB=3.6.1 CONFIG="--config /tmp/mongodb-wiredtiger.conf"
 
 before_script:
   - cp spec/config/* /tmp/
