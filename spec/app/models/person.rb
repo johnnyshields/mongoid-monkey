@@ -39,6 +39,11 @@ class Person
   field :range, type: Range
 
   embeds_many :addresses, as: :addressable, validate: false
+  embeds_many :videos, order: [[ :title, :asc ]], validate: false
+  embeds_many :appointments, validate: false
+  embeds_many :symptoms, validate: false
+  embeds_many :phone_numbers, class_name: "Phone", validate: false
+  embeds_many :phones, store_as: :mobile_phones, validate: false
   embeds_one :name, as: :namable, validate: false do
     def extension
       "Testing"

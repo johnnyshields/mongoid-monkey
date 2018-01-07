@@ -80,7 +80,7 @@ if defined?(Moped) && Moped::VERSION =~ /\A3\./
 
           it "only limits the fields on the correct criteria" do
             criteria.each do |band|
-              Band.new.active.should be_true
+              Band.new.active.should eq true
             end
           end
         end
@@ -94,7 +94,7 @@ if defined?(Moped) && Moped::VERSION =~ /\A3\./
           it "only limits the fields on the correct criteria" do
             criteria.each do |band|
               Band.all.each do |b|
-                b.active.should be_true
+                b.active.should eq true
               end
             end
           end

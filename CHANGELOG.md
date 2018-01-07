@@ -1,4 +1,10 @@
 
+#### 0.3.0
+
+* Replace `$pushAll` with `$push + $each`.
+* Aggregate methods (`max`, `sum`, etc) must use cursor in MongoDB 3.6+.
+* Config `safe: true` should send WriteConcern: Acknowledged `w: 1` to database (and not `safe: true`).
+
 #### 0.2.5
 
 * Improvements to `:touch` callback support on `:embedded_in`.
