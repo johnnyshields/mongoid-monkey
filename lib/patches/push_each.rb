@@ -16,7 +16,7 @@ module Batchable
     inserts = pre_process_batch_insert(docs)
     if insertable?
       collection.find(selector).update(
-          positionally(selector, operation => { path => use_each ? { '$each' => Array.wrap(inserts) } : inserts })
+          positionally(selector, operation => { path => use_each ? { '$each' => inserts } : inserts })
       )
       post_process_batch_insert(docs)
     end
