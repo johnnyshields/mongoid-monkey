@@ -69,14 +69,14 @@ module Atomic
   end
   alias_method_chain :push, :mongoid4
 
-  def push_all_with_mongoid4(*args)
+  # Uses $push + $each rather than $pushAll
+  def push_all(*args)
     if args.length == 1 && args.first.is_a?(Hash)
-      query.update_all("$pushAll" => collect_operations(args.first))
+      query.update_all("$push" => collect_operations(args.first, true))
     else
-      push_all_without_mongoid4(*args)
+      query.update_all("$push" => { database_field_name(args[0]) => { "$each" => args[1] } })
     end
   end
-  alias_method_chain :push_all, :mongoid4
 
   def rename_with_mongoid4(*args)
     if args.length == 1 && args.first.is_a?(Hash)
@@ -102,9 +102,9 @@ module Atomic
 
   private
 
-  def collect_operations(ops)
+  def collect_operations(ops, use_each = false)
     ops.inject({}) do |operations, (field, value)|
-      operations[database_field_name(field)] = value.mongoize
+      operations[database_field_name(field)] = use_each ? { '$each' => value.mongoize } : value.mongoize
       operations
     end
   end
@@ -116,7 +116,16 @@ module Mongoid
 module Persistence
 module Atomic
 
-  # push_all is deprecated so not supported
+  # Replace usage of $pushAll with $push + $each
+  class PushAll
+    def persist
+      append_with("$push")
+    end
+
+    def operation(modifier)
+      { modifier => { path => value.is_a?(Array) ? { "$each" => value } : value}}
+    end
+  end
 
   def add_to_set_with_mongoid4(*args)
     if args.length == 1 && args.first.is_a?(Hash)
@@ -331,6 +340,32 @@ module Atomic
       _root.collection.find(selector).update(operations)
     end
   end
+end
+end
+end
+
+# Replace usage of $pushAll with $push + $each
+module Mongoid
+module Relations
+module Embedded
+module Batchable
+
+  def batch_insert(docs)
+    execute_batch_insert(docs, "$push", true)
+  end
+
+  def execute_batch_insert(docs, operation, use_each = false)
+    self.inserts_valid = true
+    inserts = pre_process_batch_insert(docs)
+    if insertable?
+      collection.find(selector).update(
+          positionally(selector, operation => { path => use_each ? { '$each' => inserts } : inserts })
+      )
+      post_process_batch_insert(docs)
+    end
+    inserts
+  end
+end
 end
 end
 end

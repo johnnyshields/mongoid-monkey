@@ -31,7 +31,8 @@ If you would only like some of the patches, please copy and paste the code to yo
 
 | File | Description | 3 | 4 | 5 |
 | --- | --- | --- | --- | --- |
-| `atomic.rb` | Backport syntax change of atomic query methods. | ● | ○ | ○ |
+| `aggregate_cursor.rb` | Aggregate methods (`max`, `sum`, etc) must use cursor in MongoDB 3.6+ | ● | ○ | ○ |
+| `atomic.rb` | Backport syntax change of atomic query methods. Replace `$pushAll` with `$push + $each`. | ● | ○ | ○ |
 | `big_decimal.rb` | Fixes buggy BigDecimal behavior. | ● | ● | ● |
 | `db_commands.rb` | Use MongoDB 3.0+ command syntax; required for WiredTiger. | ● | ● | ○ |
 | `instrument.rb` | Backport instrumentation change to Moped 1. | ● | ○ | ○ |
@@ -40,6 +41,7 @@ If you would only like some of the patches, please copy and paste the code to yo
 | `embedded_touch.rb` (1) | Backport [Issue #3310](https://github.com/mongodb/mongoid/commit/a94c2f43573e58f973913c881ad9d11d62bf857c) from Mongoid 4 to add `:touch` option to `embedded_in`. | ● | ○ | ○ |
 | `embedded_touch.rb` (2) | Backport [PR #4392](https://github.com/mongodb/mongoid/pull/4392) from Mongoid 6 to fix an infinite loop issue related to `:touch` callbacks. | ● | ● | ● |
 | `index_options.rb` | Backport latest index valid index options from Mongoid 6. | ● | ● | ○ |
+| `write_concern.rb` | Config `safe: true` should send WriteConcern: Acknowledged `w: 1` to database (and not `safe: true`). | ● | ○ | ○ |
 
 ### License
 

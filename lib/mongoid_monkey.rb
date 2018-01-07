@@ -1,5 +1,6 @@
 require 'version'
 
+require 'patches/aggregate_cursor'
 require 'patches/atomic'
 require 'patches/big_decimal'
 require 'patches/db_commands'
@@ -8,3 +9,4 @@ require 'patches/instrument'
 require 'patches/reorder'
 require 'patches/only_pluck_localized'
 require 'patches/embedded_touch'
+require 'patches/write_concern'

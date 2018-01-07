@@ -21,4 +21,5 @@ class Address
   field :name, localize: true
 
   embedded_in :addressable, polymorphic: true
+  embeds_many :locations, validate: false
 end
