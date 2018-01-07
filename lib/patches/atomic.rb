@@ -72,7 +72,7 @@ module Atomic
   # Uses $push + $each rather than $pushAll
   def push_all(*args)
     if args.length == 1 && args.first.is_a?(Hash)
-      query.update_all("$push" => collect_operations(args.first, true))
+      query.update_all("$push" => collect_each_operations(args.first))
     else
       query.update_all("$push" => { database_field_name(args[0]) => { "$each" => Array.wrap(args[1]) } })
     end
@@ -102,10 +102,15 @@ module Atomic
 
   private
 
-  def collect_operations(ops, use_each = false)
-    ops.inject({}) do |operations, (field, value)|
-      operations[database_field_name(field)] = use_each ? { '$each' => Array.wrap(value.mongoize) } : value.mongoize
-      operations
+  def collect_operations(ops)
+    ops.each_with_object({}) do |(field, value), operations|
+      operations[database_field_name(field)] = value.mongoize
+    end
+  end
+
+  def collect_each_operations(ops)
+    ops.each_with_object({}) do |(field, value), operations|
+      operations[database_field_name(field)] = { "$each" => Array.wrap(value).mongoize }
     end
   end
 end
