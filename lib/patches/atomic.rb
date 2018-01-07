@@ -74,7 +74,7 @@ module Atomic
     if args.length == 1 && args.first.is_a?(Hash)
       query.update_all("$push" => collect_operations(args.first, true))
     else
-      query.update_all("$push" => { database_field_name(args[0]) => { "$each" => args[1] } })
+      query.update_all("$push" => { database_field_name(args[0]) => { "$each" => Array.wrap(args[1]) } })
     end
   end
 
@@ -104,7 +104,7 @@ module Atomic
 
   def collect_operations(ops, use_each = false)
     ops.inject({}) do |operations, (field, value)|
-      operations[database_field_name(field)] = use_each ? { '$each' => value.mongoize } : value.mongoize
+      operations[database_field_name(field)] = use_each ? { '$each' => Array.wrap(value.mongoize) } : value.mongoize
       operations
     end
   end
@@ -123,7 +123,7 @@ module Atomic
     end
 
     def operation(modifier)
-      { modifier => { path => value.is_a?(Array) ? { "$each" => value } : value}}
+      { modifier => { path => { "$each" => Array.wrap(value) } } }
     end
   end
 
@@ -359,7 +359,7 @@ module Batchable
     inserts = pre_process_batch_insert(docs)
     if insertable?
       collection.find(selector).update(
-          positionally(selector, operation => { path => use_each ? { '$each' => inserts } : inserts })
+          positionally(selector, operation => { path => use_each ? { '$each' => Array.wrap(inserts) } : inserts })
       )
       post_process_batch_insert(docs)
     end

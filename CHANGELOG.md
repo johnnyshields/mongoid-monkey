@@ -1,4 +1,8 @@
 
+#### 0.3.1
+
+* Use Array#wrap with `$each` method to be safe.
+
 #### 0.3.0
 
 * Replace `$pushAll` with `$push + $each`.
