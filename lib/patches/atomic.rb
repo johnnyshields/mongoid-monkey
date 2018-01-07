@@ -344,30 +344,4 @@ end
 end
 end
 
-# Replace usage of $pushAll with $push + $each
-module Mongoid
-module Relations
-module Embedded
-module Batchable
-
-  def batch_insert(docs)
-    execute_batch_insert(docs, "$push", true)
-  end
-
-  def execute_batch_insert(docs, operation, use_each = false)
-    self.inserts_valid = true
-    inserts = pre_process_batch_insert(docs)
-    if insertable?
-      collection.find(selector).update(
-          positionally(selector, operation => { path => use_each ? { '$each' => Array.wrap(inserts) } : inserts })
-      )
-      post_process_batch_insert(docs)
-    end
-    inserts
-  end
-end
-end
-end
-end
-
 end

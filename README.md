@@ -38,6 +38,7 @@ If you would only like some of the patches, please copy and paste the code to yo
 | `instrument.rb` | Backport instrumentation change to Moped 1. | ● | ○ | ○ |
 | `reorder.rb` | Backport `Criteria#reorder` method from Mongoid 4. | ● | ○ | ○ |
 | `only_pluck_localized.rb` | Backport [PR #4299](https://github.com/mongodb/mongoid/pull/4299) from Mongoid 6 which fixes `#only`, `#without`, and `#pluck` with localized fields. | ● | × | × |
+| `push_each.rb` | Backport [PR #4460](https://github.com/mongodb/mongoid/pull/4460) to replace usage of $pushAll with $push + $each for MongoDB 3.6 support. | ● | × | × |
 | `embedded_touch.rb` (1) | Backport [Issue #3310](https://github.com/mongodb/mongoid/commit/a94c2f43573e58f973913c881ad9d11d62bf857c) from Mongoid 4 to add `:touch` option to `embedded_in`. | ● | ○ | ○ |
 | `embedded_touch.rb` (2) | Backport [PR #4392](https://github.com/mongodb/mongoid/pull/4392) from Mongoid 6 to fix an infinite loop issue related to `:touch` callbacks. | ● | ● | ● |
 | `index_options.rb` | Backport latest index valid index options from Mongoid 6. | ● | ● | ○ |

@@ -2,6 +2,7 @@ require 'version'
 
 require 'patches/aggregate_cursor'
 require 'patches/atomic'
+require 'patches/push_each'
 require 'patches/big_decimal'
 require 'patches/db_commands'
 require 'patches/index_options'
