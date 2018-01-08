@@ -1,4 +1,8 @@
 
+#### 0.3.2
+
+* Refactor "push_each.rb" patch.
+
 #### 0.3.1
 
 * Use Array#wrap with `$each` method to be safe.
