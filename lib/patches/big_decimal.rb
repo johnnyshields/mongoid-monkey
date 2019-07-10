@@ -15,7 +15,7 @@ if Mongoid::VERSION =~ /\A[345]\./
           module ClassMethods
 
             def demongoize(object)
-              object && object.numeric? ? ::BigDecimal.new(object.to_s) : nil
+              object && object.numeric? ? BigDecimal(object.to_s) : nil
             end
 
             def mongoize(object)
